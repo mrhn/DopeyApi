@@ -35,6 +35,7 @@ jobs:
             - v1-dependencies-
 
       - run: composer install -n --prefer-dist
+      - run: cp .env.test.example .env
 
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
