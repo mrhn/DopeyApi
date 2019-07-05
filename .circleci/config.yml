@@ -57,8 +57,12 @@ jobs:
 
       - run: php artisan migrate --env=testing --database=sqlite --force
 
-      # run tests with phpunit or codecept
+      # run php cs fixer
+      - run: ./vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating --diff --dry-run --config .php_cs.php
+
+      # run tests with phpunit
       - run: ./vendor/bin/phpunit
+
       - store_test_results:
           path: tests/_output
       - store_artifacts:
