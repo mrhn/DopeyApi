@@ -56,7 +56,7 @@ final class BeerServiceTest extends TestCase
 
         static::assertCount(25, $beers);
 
-        static::assertSame($this->buzzBeer, Arr::first($beers));
+        static::assertEquals($this->buzzBeer, Arr::first($beers));
     }
 
     /** @test */
@@ -66,7 +66,7 @@ final class BeerServiceTest extends TestCase
 
         static::assertCount(1, $beers);
 
-        static::assertSame($this->skullCandy, Arr::first($beers));
+        static::assertEquals($this->skullCandy, Arr::first($beers));
     }
 
     /** @test */
@@ -74,6 +74,6 @@ final class BeerServiceTest extends TestCase
     {
         $beer = $this->beerService->get(26);
 
-        static::assertSame($this->skullCandy, $beer);
+        static::assertEquals($this->skullCandy, $beer);
     }
 }

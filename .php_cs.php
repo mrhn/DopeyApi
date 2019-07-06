@@ -29,6 +29,8 @@ return PhpCsFixer\Config::create()
             'php_unit_method_casing' => ['case' => 'snake_case'],
             // for larastan
             'return_assignment' => false,
+            // i do not have the time to write custom assertors
+            'php_unit_strict' => false,
         ]
     )
     ->setFinder($finder)
