@@ -13,8 +13,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude($excludeDirs)
     ->ignoreDotFiles(true)
-    ->ignoreVCS(true)
-;
+    ->ignoreVCS(true);
 
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
@@ -28,4 +27,5 @@ return PhpCsFixer\Config::create()
             'blank_line_before_return' => true,
         ]
     )
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ->setUsingCache(false);
