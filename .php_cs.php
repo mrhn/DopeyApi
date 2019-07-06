@@ -12,7 +12,8 @@ $excludeDirs = [
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude($excludeDirs)
-    ->ignoreDotFiles(true)->ignoreVCS(true)
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true)
 ;
 
 return PhpCsFixer\Config::create()
@@ -27,8 +28,4 @@ return PhpCsFixer\Config::create()
             'blank_line_before_return' => true,
         ]
     )
-    ->setCacheFile(__DIR__.'/.php_cs.cache')
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->in(__DIR__)
-    );
+    ->setFinder($finder);
