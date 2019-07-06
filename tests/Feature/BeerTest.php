@@ -23,9 +23,10 @@ final class BeerTest extends TestCase
                         'name',
                         'description',
                         'abv',
-                    ]
+                    ],
                 ],
-            ]);
+            ])
+        ;
     }
 
     /** @test */
@@ -41,6 +42,7 @@ final class BeerTest extends TestCase
                     'description',
                     'abv',
                 ],
-            ]);
+            ])
+        ;
     }
 }

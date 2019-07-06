@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Transformers;
-
 
 use App\Models\DTO\Beer;
 use League\Fractal\TransformerAbstract;
@@ -18,5 +16,4 @@ class BeerTransformer extends TransformerAbstract
             'abv' => $beer->abv,
         ];
     }
-
 }

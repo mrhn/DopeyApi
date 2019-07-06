@@ -22,9 +22,10 @@ final class MealTest extends TestCase
                         'id',
                         'name',
                         'type',
-                    ]
+                    ],
                 ],
-            ]);
+            ])
+        ;
     }
 
     /** @test */
@@ -39,6 +40,7 @@ final class MealTest extends TestCase
                     'name',
                     'type',
                 ],
-            ]);
+            ])
+        ;
     }
 }

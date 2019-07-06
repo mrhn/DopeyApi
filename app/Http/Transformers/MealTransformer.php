@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Http\Transformers;
 
-
-use App\Models\DTO\Beer;
 use App\Models\DTO\Meal;
 use League\Fractal\TransformerAbstract;
 
@@ -18,5 +15,4 @@ class MealTransformer extends TransformerAbstract
             'type' => $meal->type,
         ];
     }
-
 }
