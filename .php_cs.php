@@ -27,6 +27,8 @@ return PhpCsFixer\Config::create()
             'blank_line_before_return' => true,
             'php_unit_test_annotation' => false,
             'php_unit_method_casing' => ['case' => 'snake_case'],
+            // for larastan
+            'return_assignment' => false,
         ]
     )
     ->setFinder($finder)

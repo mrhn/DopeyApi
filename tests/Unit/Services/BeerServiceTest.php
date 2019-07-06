@@ -7,7 +7,11 @@ use App\Services\BeerService;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
 
-class BeerServiceTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class BeerServiceTest extends TestCase
 {
     /**
      * @var BeerService
@@ -45,15 +49,14 @@ class BeerServiceTest extends TestCase
         );
     }
 
-
     /** @test */
     public function can_retrieve_bears()
     {
         $beers = $this->beerService->all();
 
-        $this->assertCount(25, $beers);
+        static::assertCount(25, $beers);
 
-        $this->assertEquals($this->buzzBeer, Arr::first($beers));
+        static::assertSame($this->buzzBeer, Arr::first($beers));
     }
 
     /** @test */
@@ -61,9 +64,9 @@ class BeerServiceTest extends TestCase
     {
         $beers = $this->beerService->all('Skull');
 
-        $this->assertCount(1, $beers);
+        static::assertCount(1, $beers);
 
-        $this->assertEquals($this->skullCandy, Arr::first($beers));
+        static::assertSame($this->skullCandy, Arr::first($beers));
     }
 
     /** @test */
@@ -71,6 +74,6 @@ class BeerServiceTest extends TestCase
     {
         $beer = $this->beerService->get(26);
 
-        $this->assertEquals($this->skullCandy, $beer);
+        static::assertSame($this->skullCandy, $beer);
     }
 }

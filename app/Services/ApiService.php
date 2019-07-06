@@ -26,7 +26,7 @@ abstract class ApiService
         $model = json_decode($content, true);
 
         // punk api returns find requests as arrays
-        if (is_array(json_decode($content, true))) {
+        if (\is_array(json_decode($content, true))) {
             $model = Arr::first($model);
         }
 
@@ -36,5 +36,5 @@ abstract class ApiService
     /**
      * @return DTO
      */
-    protected abstract function transform(array $data);
+    abstract protected function transform(array $data);
 }
