@@ -60,6 +60,9 @@ jobs:
       # run php cs fixer
       - run: ./vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating --diff --dry-run --config .php_cs.php
 
+      # larastan
+      - run: php artisan code:analyse --level=max
+
       # run tests with phpunit
       - run: ./vendor/bin/phpunit
 
