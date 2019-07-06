@@ -28,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
                 return new Client([
                     'base_uri' => config('services.food.beer.url'),
                 ]);
-            });
+            })
+        ;
 
         // bind guzzle client for beer service
         $this->app->when(MealService::class)
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 return new Client([
                     'base_uri' => config('services.food.meals.url'),
                 ]);
-            });
+            })
+        ;
     }
 }

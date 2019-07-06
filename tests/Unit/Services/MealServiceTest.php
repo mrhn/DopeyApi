@@ -2,9 +2,7 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\DTO\Beer;
 use App\Models\DTO\Meal;
-use App\Services\BeerService;
 use App\Services\MealService;
 use Illuminate\Support\Arr;
 use Tests\TestCase;
