@@ -48,7 +48,7 @@ final class MealServiceTest extends TestCase
     }
 
     /** @test */
-    public function can_retrieve_bears()
+    public function can_retrieve_meals()
     {
         $meals = $this->mealService->all();
 
@@ -58,7 +58,7 @@ final class MealServiceTest extends TestCase
     }
 
     /** @test */
-    public function can_search_bears()
+    public function can_search_meals()
     {
         $meals = $this->mealService->all('Teriyaki Chicken');
 
@@ -68,7 +68,7 @@ final class MealServiceTest extends TestCase
     }
 
     /** @test */
-    public function can_find_single_beer()
+    public function can_find_single_meal()
     {
         $meal = $this->mealService->get(52772);
 

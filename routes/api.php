@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('meals')->group(function () {
+    Route::get('', 'MealController@all');
+    Route::get('/{mealId}', 'MealController@get')->where('mealId', '[0-9]+');
+});
+
+Route::prefix('beers')->group(function () {
+    Route::get('', 'BeerController@all');
+    Route::get('/{beerId}', 'BeerController@get')->where('beerId', '[0-9]+');
 });
