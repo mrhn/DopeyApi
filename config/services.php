@@ -44,4 +44,12 @@ return [
         ],
     ],
 
+    'food' => [
+        'beverages' => [
+            'url' => env('BEVERAGES_URL'),
+        ],
+        'dishes' => [
+            'url' => env('DISHES_URL'),
+        ]
+    ]
 ];
