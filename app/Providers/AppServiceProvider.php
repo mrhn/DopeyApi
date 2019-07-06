@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             })
         ;
 
-        // bind guzzle client for beer service
+        // bind guzzle client for meal service
         $this->app->when(MealService::class)
             ->needs(Client::class)
             ->give(function () {
