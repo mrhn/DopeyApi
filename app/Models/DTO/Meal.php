@@ -19,11 +19,6 @@ class Meal extends DTO
      */
     public $type;
 
-    /**
-     * @var float
-     */
-    public $abv;
-
     public function __construct(int $id, string $name, string $type)
     {
         $this->id = $id;
