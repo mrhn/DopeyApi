@@ -37,11 +37,7 @@ abstract class ApiService
             $content = $content->meals;
         }
 
-        if (!is_array($content)) {
-            return [$content];
-        }
-
-        return $content;
+        return Arr::wrap($content);
     }
 
     /**
