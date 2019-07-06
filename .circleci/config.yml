@@ -58,7 +58,7 @@ jobs:
       - run: php artisan migrate --env=testing --database=sqlite --force
 
       # run php cs fixer
-      - run: ./vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating --diff --dry-run --config .php_cs.php
+      - run: composer cs:check
 
       # larastan
       - run: php artisan code:analyse --level=max
