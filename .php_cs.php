@@ -25,6 +25,8 @@ return PhpCsFixer\Config::create()
             '@PSR2' => true,
             'align_multiline_comment' => true,
             'blank_line_before_return' => true,
+            'php_unit_test_annotation' => false,
+            'php_unit_method_casing' => ['case' => 'snake_case'],
         ]
     )
     ->setFinder($finder)
