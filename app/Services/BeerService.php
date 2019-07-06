@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\DTO\Beer;
+use stdClass;
 
 class BeerService extends ApiService
 {
@@ -37,8 +38,8 @@ class BeerService extends ApiService
         return $beer;
     }
 
-    protected function transform(array $data): Beer
+    protected function transform(stdClass $data): Beer
     {
-        return new Beer($data['id'], $data['name'], $data['description'], $data['abv']);
+        return new Beer($data->id, $data->name, $data->description, $data->abv);
     }
 }

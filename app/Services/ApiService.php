@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\DTO\DTO;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
+use stdClass;
 
 abstract class ApiService
 {
@@ -18,23 +19,29 @@ abstract class ApiService
 
     protected function mapArray(string $content): array
     {
-        return array_map([$this, 'transform'], json_decode($content, true));
+        return array_map([$this, 'transform'], $this->unpack($content));
     }
 
     protected function map(string $content): DTO
     {
-        $model = json_decode($content, true);
-
-        // punk api returns find requests as arrays
-        if (\is_array(json_decode($content, true))) {
-            $model = Arr::first($model);
-        }
+        $model = $this->unpack($content)[0];
 
         return $this->transform($model);
+    }
+
+    protected function unpack($content): array
+    {
+        $content = json_decode($content);
+
+        if (isset($content->meals)) {
+            $content = $content->meals;
+        }
+
+        return Arr::wrap($content);
     }
 
     /**
      * @return DTO
      */
-    abstract protected function transform(array $data);
+    abstract protected function transform(stdClass $data);
 }

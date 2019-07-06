@@ -45,11 +45,11 @@ return [
     ],
 
     'food' => [
-        'beverages' => [
-            'url' => env('BEVERAGES_URL'),
+        'beer' => [
+            'url' => env('BEERS_URL'),
         ],
-        'dishes' => [
-            'url' => env('DISHES_URL'),
+        'meals' => [
+            'url' => env('MEALS_URL'),
         ]
     ]
 ];
