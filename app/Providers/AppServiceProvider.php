@@ -10,18 +10,13 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {
-        //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -32,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
                 return new Client([
                     'base_uri' => config('services.food.beverages.url'),
                 ]);
-            });
+            })
+        ;
     }
 }

@@ -17,7 +17,7 @@ class BeverageService extends ApiService
 
     public function get(int $id)
     {
-        $response = $this->client->get("beers/$id");
+        $response = $this->client->get("beers/{$id}");
 
         $model = $response->getBody()->getContents();
 
