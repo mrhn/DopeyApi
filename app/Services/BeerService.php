@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\DTO\Beer;
 use App\Models\DTO\DTO;
+use GuzzleHttp\Exception\BadResponseException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use stdClass;
 
 class BeerService extends ApiService
@@ -34,7 +36,12 @@ class BeerService extends ApiService
      */
     public function get(int $id): DTO
     {
-        $response = $this->client->get("beers/{$id}");
+        try {
+            $response = $this->client->get("beers/{$id}");
+        } catch (BadResponseException $exception) {
+            // fairly optimistic
+            throw (new ModelNotFoundException())->setModel(Beer::class, [$id]);
+        }
 
         /** @var Beer $beer */
         $beer = $this->map($response->getBody()->getContents());
