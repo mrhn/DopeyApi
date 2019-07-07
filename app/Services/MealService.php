@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\DTO\DTO;
 use App\Models\DTO\Meal;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use stdClass;
 
 class MealService extends ApiService
@@ -38,8 +39,17 @@ class MealService extends ApiService
 
         $response = $this->client->get('lookup.php', $options);
 
+        // heard about 404 errors api?
+        $content = $response->getBody()->getContents();
+
+        $json = json_decode($content);
+
+        if (!$json->meals) {
+            throw (new ModelNotFoundException())->setModel(Meal::class, [$id]);
+        }
+
         /** @var Meal $meal */
-        $meal = $this->map($response->getBody()->getContents());
+        $meal = $this->map($content);
 
         return $meal;
     }
