@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Rules\ValidBeer;
 use App\Rules\ValidMeal;
 use App\Rules\ValidReservationTime;
-use App\Rules\ValidUser;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\In;
