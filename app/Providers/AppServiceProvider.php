@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Carbon::resetToStringFormat('Y-m-d H:m:s');
+        Carbon::resetToStringFormat();
 
         // bind guzzle client for beer service
         $this->app->when(BeerService::class)

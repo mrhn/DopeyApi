@@ -6,10 +6,10 @@ use App\Models\Beer;
 use App\Models\Meal;
 use App\Models\User;
 use Carbon\Carbon;
+use DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
-use DatabaseSeeder;
 
 /**
  * @internal
@@ -19,7 +19,7 @@ final class ReservationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -63,6 +63,5 @@ final class ReservationTest extends TestCase
         $this->assertDatabaseHas('beers', ['external_id' => 26]);
 
         $this->assertDatabaseHas('beer_reservation', ['beer_id' => Beer::where('external_id', 26)->first()->id]);
-
     }
 }
