@@ -64,6 +64,8 @@ class ReservationService
         $builder = Reservation::whereHas('user', function (Builder $query) use ($user) {
             $query->where('email', $user->email);
         });
+
+        return $builder;
     }
 
     protected function tablesFreeByDate(Carbon $date): Collection
