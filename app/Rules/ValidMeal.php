@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Services\MealService;
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidMeal implements Rule
+class ValidMeal extends ExternalApiRule implements Rule
 {
     /**
      * @var MealService
