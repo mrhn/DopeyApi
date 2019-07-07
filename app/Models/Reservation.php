@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Class Reservation
- * @package App\Models
+ * Class Reservation.
  *
- * @property int $id
+ * @property int    $id
  * @property Carbon $time
  */
 class Reservation extends Model

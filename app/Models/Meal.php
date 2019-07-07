@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Meal
- * @package App\Models
+ * Class Meal.
  *
  * @method static Model firstOrCreate($data)
  */

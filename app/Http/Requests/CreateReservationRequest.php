@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use App\Rules\ValidBeer;
 use App\Rules\ValidMeal;
 use App\Rules\ValidReservationTime;
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\In;
 

@@ -17,6 +17,10 @@ abstract class ApiService
         $this->client = $client;
     }
 
+    abstract public function all(string $search = ''): array;
+
+    abstract public function get(int $id): DTO;
+
     protected function mapArray(string $content): array
     {
         return array_map([$this, 'transform'], $this->unpack($content));
@@ -44,8 +48,4 @@ abstract class ApiService
      * @return DTO
      */
     abstract protected function transform(stdClass $data);
-
-    abstract public function all(string $search = ''): array ;
-
-    abstract public function get(int $id): DTO;
 }

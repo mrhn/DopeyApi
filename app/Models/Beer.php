@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Beer
- * @package App\Models
+ * Class Beer.
  *
  * @method static Model firstOrCreate($data)
  */
