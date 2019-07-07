@@ -151,6 +151,64 @@ final class ReservationCreateTest extends TestCase
     }
 
     /** @test */
+    public function receiving_200_can_book_different_time_while_other_time_filled_up()
+    {
+        $user = factory(User::class)->create();
+
+        $date = Carbon::now()->startOfDay()->hour(16);
+
+        Table::all()->each(function (Table $table) use ($date, $user) {
+            $reservation = new Reservation(['time' => $date]);
+            $reservation->user()->associate($user);
+            $table->reservations()->save($reservation);
+        });
+
+        $newDate = Carbon::now()->startOfDay()->hour(18);
+
+        $payload = [
+            'time' => $newDate,
+            'seats' => 2,
+            'beers' => [$this->beerId, $this->beerId],
+            'meals' => [$this->mealId, $this->mealId],
+        ];
+
+        $response = $this->json('POST', "/api/users/{$user->email}/reservations", $payload);
+
+        $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+        ;
+    }
+
+    /** @test */
+    public function receiving_200_can_book_different_day_while_other_time_filled_up()
+    {
+        $user = factory(User::class)->create();
+
+        $date = Carbon::now()->startOfDay()->hour(16);
+
+        Table::all()->each(function (Table $table) use ($date, $user) {
+            $reservation = new Reservation(['time' => $date]);
+            $reservation->user()->associate($user);
+            $table->reservations()->save($reservation);
+        });
+
+        $newDate = Carbon::now()->addDays(1)->startOfDay()->hour(16);
+
+        $payload = [
+            'time' => $newDate,
+            'seats' => 2,
+            'beers' => [$this->beerId, $this->beerId],
+            'meals' => [$this->mealId, $this->mealId],
+        ];
+
+        $response = $this->json('POST', "/api/users/{$user->email}/reservations", $payload);
+
+        $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+        ;
+    }
+
+    /** @test */
     public function receiving_422_can_not_reserve_if_no_beers()
     {
         $user = factory(User::class)->create();
