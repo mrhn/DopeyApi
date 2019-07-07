@@ -11,4 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Beer extends Model
 {
+    protected $fillable = [
+        'external_id',
+    ];
 }

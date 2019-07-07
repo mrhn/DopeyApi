@@ -16,11 +16,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Reservation extends Model
 {
     protected $fillable = [
-        'fillable',
+        'time',
     ];
 
     protected $dates = [
-        'date',
+        'time',
     ];
 
     public function user(): BelongsTo
@@ -57,7 +57,7 @@ class Reservation extends Model
         foreach ($meals as $meal) {
             $meal = Meal::firstOrCreate(['external_id' => $meal]);
 
-            $this->beers()->save($meal);
+            $this->meals()->save($meal);
         }
     }
 }

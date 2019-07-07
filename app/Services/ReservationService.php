@@ -27,11 +27,14 @@ class ReservationService
             ]);
 
             $reservation->user()->associate($user);
+            $reservation->save();
 
             $usedSeats = 0;
             while ($usedSeats < $seats) {
                 $table = $freeTables->shift();
                 $reservation->tables()->save($table);
+
+                $usedSeats = $usedSeats + $table->seats;
             }
 
             $reservation->saveBeers($beers);

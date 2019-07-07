@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\BeerService;
 use App\Services\MealService;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Carbon::resetToStringFormat('Y-m-d H:m:s');
+
         // bind guzzle client for beer service
         $this->app->when(BeerService::class)
             ->needs(Client::class)

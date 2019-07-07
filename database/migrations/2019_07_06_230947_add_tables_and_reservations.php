@@ -40,11 +40,15 @@ class AddTablesAndReservations extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('external_id');
+
+            $table->timestamps();
         });
 
         Schema::create('beers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('external_id');
+
+            $table->timestamps();
         });
 
         Schema::create('meal_reservation', function (Blueprint $table) {
@@ -73,6 +77,7 @@ class AddTablesAndReservations extends Migration
         Schema::dropIfExists('meal_reservation');
         Schema::dropIfExists('meals');
         Schema::dropIfExists('beers');
+        Schema::dropIfExists('reservation_table');
         Schema::dropIfExists('reservations');
         Schema::dropIfExists('tables');
     }

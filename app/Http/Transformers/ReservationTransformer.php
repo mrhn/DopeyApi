@@ -16,7 +16,7 @@ class ReservationTransformer extends TransformerAbstract
     {
         return [
             'id' => $reservation->id,
-            'time' => $reservation->time,
+            'time' => (string) $reservation->time,
         ];
     }
 }

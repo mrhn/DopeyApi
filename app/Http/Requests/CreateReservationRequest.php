@@ -21,7 +21,7 @@ class CreateReservationRequest extends FormRequest
     public function authorize()
     {
         /** @var User $user */
-        $user = User::where('email', $this->input('email'))->firstOrFail();
+        $user = User::where('email', $this->route('email'))->firstOrFail();
         $this->user = $user;
 
         return true;
@@ -42,7 +42,7 @@ class CreateReservationRequest extends FormRequest
 
         return [
             'time' => ['required', 'date', new ValidReservationTime()],
-            'seats' => ['required', 'number', new In(static::VALID_SEATS)],
+            'seats' => ['required', 'numeric', new In(static::VALID_SEATS)],
             'beers' => ['required', 'array', $seats ? "size:{$seats}" : ''],
             'beers.*' => [app(ValidBeer::class)],
             'meals' => ['required', 'array', $seats ? "size:{$seats}" : ''],

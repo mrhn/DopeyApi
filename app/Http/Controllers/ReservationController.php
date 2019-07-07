@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateReservationRequest;
 use App\Http\Transformers\ReservationTransformer;
 use App\Services\ReservationService;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 
 class ReservationController extends Controller
@@ -34,12 +35,12 @@ class ReservationController extends Controller
 
         $reservation = $this->service->create(
             $request->user,
-            $json['time'],
+            Carbon::parse($json['time']),
             $json['seats'],
             $json['beers'],
             $json['meals']
         );
 
-        return $this->response($reservation, JsonResponse::HTTP_OK);
+        return $this->response($reservation, JsonResponse::HTTP_CREATED);
     }
 }
