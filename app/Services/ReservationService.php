@@ -71,7 +71,7 @@ class ReservationService
     protected function tablesFreeByDate(Carbon $date): Collection
     {
         return Table::whereDoesntHave('reservations', function (Builder $query) use ($date): void {
-            $query->whereDate('time', $date);
+            $query->where('time', $date);
         })->get();
     }
 }
