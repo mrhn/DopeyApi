@@ -25,6 +25,7 @@ class ReservationService
             $reservation = new Reservation([
                 'time' => $date,
             ]);
+
             $reservation->user()->save($user);
 
             $usedSeats = 0;
@@ -45,23 +46,5 @@ class ReservationService
         return Table::whereDoesntHave('reservations', function (Builder $query) use ($date): void {
             $query->whereDate('time', $date);
         })->get();
-    }
-
-    protected function saveBeers(array $beers, $reservation): void
-    {
-        foreach ($beers as $beer) {
-            $beer = Beer::firstOrCreate(['external_id' => $beer]);
-
-            $reservation->beers()->save($beer);
-        }
-    }
-
-    protected function saveMeals(array $meals, $reservation): void
-    {
-        foreach ($meals as $meal) {
-            $meal = Meal::firstOrCreate(['external_id' => $meal]);
-
-            $reservation->beers()->save($meal);
-        }
     }
 }

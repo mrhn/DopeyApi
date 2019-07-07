@@ -37,6 +37,16 @@ class AddTablesAndReservations extends Migration
             $table->foreign('reservation_id')->references('id')->on('reservations');
         });
 
+        Schema::create('meals', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('external_id');
+        });
+
+        Schema::create('beers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('external_id');
+        });
+
         Schema::create('meal_reservation', function (Blueprint $table) {
             $table->unsignedBigInteger('meal_id');
             $table->unsignedBigInteger('reservation_id');
@@ -51,16 +61,6 @@ class AddTablesAndReservations extends Migration
 
             $table->foreign('beer_id')->references('id')->on('beers');
             $table->foreign('reservation_id')->references('id')->on('reservations');
-        });
-
-        Schema::create('meals', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('external_id');
-        });
-
-        Schema::create('beers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('external_id');
         });
     }
 
