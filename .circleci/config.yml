@@ -63,6 +63,9 @@ jobs:
       # larastan
       - run: php artisan code:analyse --level=max
 
+      # check that the routes can compile
+      - run: php artisan route:list
+
       # run tests with phpunit
       - run: ./vendor/bin/phpunit
 

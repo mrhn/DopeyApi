@@ -11,6 +11,14 @@
 |
 */
 
+Route::prefix('users')->group(function () {
+    Route::prefix('{email}/reservations')->group(function () {
+        Route::get('', 'ReservationController@all');
+        Route::get('/{bookingId}', 'ReservationController@get')->where('bookingId', '[0-9]+');
+        Route::post('', 'ReservationController@create');
+    });
+});
+
 Route::prefix('meals')->group(function () {
     Route::get('', 'MealController@all');
     Route::get('/{mealId}', 'MealController@get')->where('mealId', '[0-9]+');

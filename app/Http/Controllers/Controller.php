@@ -20,8 +20,8 @@ class Controller extends BaseController
      */
     protected $transformer;
 
-    protected function response($data): JsonResponse
+    protected function response($data, int $code = JsonResponse::HTTP_OK): JsonResponse
     {
-        return fractal($data, $this->transformer)->respond();
+        return fractal($data, $this->transformer)->respond($code);
     }
 }
