@@ -44,4 +44,8 @@ abstract class ApiService
      * @return DTO
      */
     abstract protected function transform(stdClass $data);
+
+    abstract public function all(string $search = ''): array ;
+
+    abstract public function get(int $id): DTO;
 }

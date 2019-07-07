@@ -2,7 +2,7 @@
 
 namespace App\Http\Transformers;
 
-use App\Reservation;
+use App\Models\Reservation;
 use League\Fractal\TransformerAbstract;
 
 class ReservationTransformer extends TransformerAbstract

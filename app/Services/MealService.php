@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\DTO\DTO;
 use App\Models\DTO\Meal;
 use stdClass;
 
@@ -25,7 +26,10 @@ class MealService extends ApiService
         return $this->mapArray($content);
     }
 
-    public function get(int $id): Meal
+    /**
+     * @return Meal
+     */
+    public function get(int $id): DTO
     {
         $options = [
             'query' => [

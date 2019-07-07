@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\DTO\Beer;
+use App\Models\DTO\DTO;
 use stdClass;
 
 class BeerService extends ApiService
@@ -28,7 +29,10 @@ class BeerService extends ApiService
         return $this->mapArray($content);
     }
 
-    public function get(int $id): Beer
+    /**
+     * @return Beer
+     */
+    public function get(int $id): DTO
     {
         $response = $this->client->get("beers/{$id}");
 

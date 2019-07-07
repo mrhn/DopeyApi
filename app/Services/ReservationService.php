@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Exceptions\NoTablesException;
-use App\Reservation;
-use App\Table;
-use App\User;
+use App\Models\Reservation;
+use App\Models\Table;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -26,7 +26,7 @@ class ReservationService
                 'time' => $date,
             ]);
 
-            $reservation->user()->save($user);
+            $reservation->user()->associate($user);
 
             $usedSeats = 0;
             while ($usedSeats < $seats) {
@@ -35,7 +35,7 @@ class ReservationService
             }
 
             $reservation->saveBeers($beers);
-            $reservation->saveMeels($meals);
+            $reservation->saveMeals($meals);
 
             return $reservation;
         });

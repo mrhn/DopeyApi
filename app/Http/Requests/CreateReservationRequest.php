@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\ValidBeer;
 use App\Rules\ValidMeal;
 use App\Rules\ValidReservationTime;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\In;
 
@@ -20,7 +20,9 @@ class CreateReservationRequest extends FormRequest
 
     public function authorize()
     {
-        $this->user = User::where('email', $this->input('email'))->firstOrFail();
+        /** @var User $user */
+        $user = User::where('email', $this->input('email'))->firstOrFail();
+        $this->user = $user;
 
         return true;
     }
@@ -32,7 +34,11 @@ class CreateReservationRequest extends FormRequest
      */
     public function rules()
     {
-        $seats = $this->json->getInt('seats', null);
+        $seats = null;
+
+        if ($this->json) {
+            $seats = $this->json->getInt('seats');
+        }
 
         return [
             'time' => ['required', 'date', new ValidReservationTime()],

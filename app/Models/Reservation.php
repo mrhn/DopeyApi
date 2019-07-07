@@ -1,13 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\DTO\Beer;
-use App\Models\DTO\Meal;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Class Reservation
+ * @package App\Models
+ *
+ * @property int $id
+ * @property Carbon $time
+ */
 class Reservation extends Model
 {
     protected $fillable = [
@@ -38,7 +44,7 @@ class Reservation extends Model
         return $this->belongsToMany(Meal::class);
     }
 
-    protected function saveBeers(array $beers, $reservation): void
+    public function saveBeers(array $beers): void
     {
         foreach ($beers as $beer) {
             $beer = Beer::firstOrCreate(['external_id' => $beer]);
@@ -47,7 +53,7 @@ class Reservation extends Model
         }
     }
 
-    protected function saveMeals(array $meals, $reservation): void
+    public function saveMeals(array $meals): void
     {
         foreach ($meals as $meal) {
             $meal = Meal::firstOrCreate(['external_id' => $meal]);
