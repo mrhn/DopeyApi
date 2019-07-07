@@ -60,7 +60,8 @@ class ReservationService
     protected function reservationsByUser(User $user): Builder
     {
         // secure that user can't fetch each others reservations
-        return Reservation::whereHas('user', function(Builder $query) use ($user){
+        /** @var Builder $builder */
+        $builder = Reservation::whereHas('user', function (Builder $query) use ($user) {
             $query->where('email', $user->email);
         });
     }

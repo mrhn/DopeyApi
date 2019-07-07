@@ -2,9 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\NoTablesException;
-use App\Models\Beer;
-use App\Models\Meal;
 use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\User;
@@ -44,7 +41,6 @@ final class ReservationAllTest extends TestCase
             $reservation->saveMeals([52772]);
         });
 
-
         $secondDate = Carbon::now()->startOfDay()->hour(16);
         $secondUser = factory(User::class)->create();
 
@@ -63,32 +59,31 @@ final class ReservationAllTest extends TestCase
             ->assertJsonCount(3, 'data')
             ->assertJson(
                 [
-                    'data' =>
+                    'data' => [
                         [
-                            [
-
-                                'time' => $date->format('Y-m-d H:i:s'),
-                                'beers' => ['data' => [[
-                                    'id' => 26,
-                                ]]],
-                                'meals' => ['data' => [[
-                                    'id' => 52772,
-                                ]]],
-                                'tables' => ['data' => [
-                                    [
-                                        'seats' => 2,
-                                    ]
-                                ]],
-                            ],
-                        ]
+                            'time' => $date->format('Y-m-d H:i:s'),
+                            'beers' => ['data' => [[
+                                'id' => 26,
+                            ]]],
+                            'meals' => ['data' => [[
+                                'id' => 52772,
+                            ]]],
+                            'tables' => ['data' => [
+                                [
+                                    'seats' => 2,
+                                ],
+                            ]],
+                        ],
+                    ],
                 ]
-            );
+            )
+        ;
     }
 
     /** @test */
     public function receiving_404_when_providing_invalid_email()
     {
-        $response = $this->json('GET', "/api/users/random/reservations?include=meals,beers,tables");
+        $response = $this->json('GET', '/api/users/random/reservations?include=meals,beers,tables');
 
         $response->assertStatus(JsonResponse::HTTP_NOT_FOUND);
     }

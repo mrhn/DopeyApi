@@ -2,7 +2,6 @@
 
 namespace App\Http\Transformers;
 
-use App\Models\DTO\Meal;
 use App\Models\Table;
 use League\Fractal\TransformerAbstract;
 

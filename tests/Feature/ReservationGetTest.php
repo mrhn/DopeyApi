@@ -2,9 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\NoTablesException;
-use App\Models\Beer;
-use App\Models\Meal;
 use App\Models\Reservation;
 use App\Models\Table;
 use App\Models\User;
@@ -42,29 +39,28 @@ final class ReservationGetTest extends TestCase
         $reservation->saveBeers([26]);
         $reservation->saveMeals([52772]);
 
-        $response = $this->json('GET', "/api/users/{$user->email}/reservations/$reservation->id?include=beers,meals,tables");
+        $response = $this->json('GET', "/api/users/{$user->email}/reservations/{$reservation->id}?include=beers,meals,tables");
 
         $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJson(
                 [
-                    'data' =>
-                        [
-
-                            'time' => $date->format('Y-m-d H:i:s'),
-                            'beers' => ['data' => [[
-                                'id' => 26,
-                            ]]],
-                            'meals' => ['data' => [[
-                                'id' => 52772,
-                            ]]],
-                            'tables' => ['data' => [
-                                [
-                                    'seats' => 2,
-                                ]
-                            ]],
-                        ],
+                    'data' => [
+                        'time' => $date->format('Y-m-d H:i:s'),
+                        'beers' => ['data' => [[
+                            'id' => 26,
+                        ]]],
+                        'meals' => ['data' => [[
+                            'id' => 52772,
+                        ]]],
+                        'tables' => ['data' => [
+                            [
+                                'seats' => 2,
+                            ],
+                        ]],
+                    ],
                 ]
-            );
+            )
+        ;
     }
 
     /** @test */
@@ -80,7 +76,7 @@ final class ReservationGetTest extends TestCase
         $reservation->saveBeers([26]);
         $reservation->saveMeals([52772]);
 
-        $response = $this->json('GET', "/api/users/random/reservations/$reservation->id?include=beers,meals,tables");
+        $response = $this->json('GET', "/api/users/random/reservations/{$reservation->id}?include=beers,meals,tables");
 
         $response->assertStatus(JsonResponse::HTTP_NOT_FOUND);
     }

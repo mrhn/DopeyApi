@@ -24,6 +24,7 @@ class ReservationController extends Controller
 
     public function all(string $email): JsonResponse
     {
+        /** @var User $user */
         $user = User::where('email', $email)->firstOrFail();
         $reservations = $this->service->all($user);
 
@@ -32,6 +33,7 @@ class ReservationController extends Controller
 
     public function get(string $email, int $id): JsonResponse
     {
+        /** @var User $user */
         $user = User::where('email', $email)->firstOrFail();
         $reservations = $this->service->get($user, $id);
 
