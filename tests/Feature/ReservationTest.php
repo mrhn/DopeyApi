@@ -28,7 +28,7 @@ final class ReservationTest extends TestCase
             'meals' => [52772, 52772],
         ];
 
-        $response = $this->json('POST', "/api/users/{$user->email}/reservation", $payload);
+        $response = $this->json('POST', "/api/users/{$user->email}/reservations", $payload);
 
         $response->assertStatus(JsonResponse::HTTP_OK)
             ->assertJsonStructure(
