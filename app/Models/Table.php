@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Table extends Model
 {
+    protected $casts = [
+        'seats' => 'int',
+    ];
+
     public function reservations(): BelongsToMany
     {
         return $this->belongsToMany(Reservation::class);

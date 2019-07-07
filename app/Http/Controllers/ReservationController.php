@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateReservationRequest;
 use App\Http\Transformers\ReservationTransformer;
+use App\Models\User;
 use App\Services\ReservationService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -21,12 +22,20 @@ class ReservationController extends Controller
         $this->transformer = new ReservationTransformer();
     }
 
-    public function all(): JsonResponse
+    public function all(string $email): JsonResponse
     {
+        $user = User::where('email', $email)->firstOrFail();
+        $reservations = $this->service->all($user);
+
+        return $this->response($reservations);
     }
 
-    public function get(): JsonResponse
+    public function get(string $email, int $id): JsonResponse
     {
+        $user = User::where('email', $email)->firstOrFail();
+        $reservations = $this->service->get($user, $id);
+
+        return $this->response($reservations);
     }
 
     public function create(CreateReservationRequest $request, string $email): JsonResponse

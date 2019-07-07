@@ -18,7 +18,7 @@ use Tests\TestCase;
  * @internal
  * @coversNothing
  */
-final class ReservationTest extends TestCase
+final class ReservationCreateTest extends TestCase
 {
     use RefreshDatabase;
 

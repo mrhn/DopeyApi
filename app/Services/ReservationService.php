@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\DB;
 
 class ReservationService
 {
+    public function all(User $user): Collection
+    {
+        return $this->reservationsByUser($user)->get();
+    }
+
+    public function get(User $user, int $id): Reservation
+    {
+        /** @var Reservation $reservation */
+        $reservation = $this->reservationsByUser($user)->findOrFail($id);
+
+        return $reservation;
+    }
+
     public function create(User $user, Carbon $date, int $seats, array $beers, array $meals)
     {
         return DB::transaction(function () use ($user, $date, $seats, $beers, $meals) {
@@ -41,6 +54,14 @@ class ReservationService
             $reservation->saveMeals($meals);
 
             return $reservation;
+        });
+    }
+
+    protected function reservationsByUser(User $user): Builder
+    {
+        // secure that user can't fetch each others reservations
+        return Reservation::whereHas('user', function(Builder $query) use ($user){
+            $query->where('email', $user->email);
         });
     }
 
